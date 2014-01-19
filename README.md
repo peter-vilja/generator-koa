@@ -1,6 +1,6 @@
 # generator-koa [![Build Status](https://secure.travis-ci.org/peter-vilja/generator-koa.png?branch=master)](https://travis-ci.org/peter-vilja/generator-koa)
 
-A [Koa](http://koajs.com) generator for [Yeoman](http://yeoman.io).
+> A [Koa](http://koajs.com) generator for [Yeoman](http://yeoman.io).
 
 ## Install
 
