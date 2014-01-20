@@ -1,5 +1,6 @@
 'use strict';
 var messages = require('./controllers/messages');
+var compress = require('koa-compress');
 var logger = require('koa-logger');
 var serve = require('koa-static');
 var route = require('koa-route');
@@ -17,6 +18,9 @@ app.use(route.post('/messages', messages.create));
 
 // Serve static files
 app.use(serve(path.join(__dirname, 'public')));
+
+// Compress
+app.use(compress());
 
 if (!module.parent) {
   app.listen(3000);
