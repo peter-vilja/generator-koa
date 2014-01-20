@@ -57,7 +57,7 @@ npm start
 npm test
 ```
 
-#### Check out [Koa Examples](https://github.com/koajs/examples/)
+See [**Koa Examples**](https://github.com/koajs/examples/)
 
 ## License
 
