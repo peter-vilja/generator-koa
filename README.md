@@ -2,6 +2,23 @@
 
 > A [Koa](http://koajs.com) generator for [Yeoman](http://yeoman.io).
 
+    .
+    ├── controllers
+    │   └── messages.js
+    ├── public
+    |   ├── scripts
+    |   └── styles
+    |       └── main.css    
+    ├── test
+    |   └── routeSpec.js
+    ├── views
+    |   ├── layout.html
+    |   └── list.html
+    ├── .editorconfig
+    ├── .jshintrc
+    ├── app.js
+    └── package.json
+  
 ## Install
 
 Install with [npm](https://npmjs.org).
@@ -39,6 +56,8 @@ npm start
 ```
 npm test
 ```
+
+#### Check out [Koa Examples](https://github.com/koajs/examples/)
 
 ## License
 
