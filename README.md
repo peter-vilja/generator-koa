@@ -45,7 +45,7 @@ $ yo koa
 
 ## Start
 
-Requires NodeJS v0.11.3+
+Requires NodeJS >= v0.11.3
 
 ```
 npm start
