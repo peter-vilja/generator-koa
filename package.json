@@ -1,6 +1,6 @@
 {
   "name": "generator-koa",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A Koa generator for Yeoman",
   "keywords": [
     "yeoman-generator",
