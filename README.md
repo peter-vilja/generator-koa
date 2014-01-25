@@ -48,13 +48,13 @@ $ yo koa
 Requires NodeJS >= v0.11.3
 
 ```
-npm start
+$ npm start
 ```
 
 ## Test
 
 ```
-npm test
+$ npm test
 ```
 
 See [**Koa Examples**](https://github.com/koajs/examples/)
