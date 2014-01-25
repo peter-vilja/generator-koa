@@ -10,30 +10,25 @@ var render = views(__dirname + '/../views', {
   map: { html: 'swig' }
 });
 
-function *home() {
+module.exports.home = function *home() {
   this.body = yield render('list', { 'messages': messages });
-}
+};
 
-function *list() {
+module.exports.list = function *list() {
   this.body = yield messages;
-}
+};
 
-function *fetch(id) {
+module.exports.fetch = function *fetch(id) {
   var message = messages[id];
   if (!message) {
     this.throw(404, 'message with id = ' + id + ' was not found');
   }
   this.body = yield message;
-}
+};
 
-function *create() {
+module.exports.create = function *create() {
   var message = yield parse(this);
   var id = messages.push(message) - 1;
   message.id = id;
   this.redirect('/');
-}
-
-module.exports.home = home;
-module.exports.list = list;
-module.exports.fetch = fetch;
-module.exports.create = create;
+};
