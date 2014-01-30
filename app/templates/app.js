@@ -15,6 +15,7 @@ app.use(route.get('/', messages.home));
 app.use(route.get('/messages', messages.list));
 app.use(route.get('/messages/:id', messages.fetch));
 app.use(route.post('/messages', messages.create));
+app.use(route.get('/async', messages.delay));
 
 // Serve static files
 app.use(serve(path.join(__dirname, 'public')));

@@ -32,3 +32,16 @@ module.exports.create = function *create() {
   message.id = id;
   this.redirect('/');
 };
+
+function doSomeAsync() {
+  return function (callback) {
+    setTimeout(function () {
+      callback(null, 'this was loaded asynchronously and it took 3 seconds to complete');
+    }, 3000);
+  };
+}
+
+// One way to deal with asynchronous call
+module.exports.delay = function *delay() {
+  this.body = yield doSomeAsync();
+};
