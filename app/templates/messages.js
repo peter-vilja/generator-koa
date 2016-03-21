@@ -1,16 +1,20 @@
 'use strict';
-var views = require('co-views');
-var parse = require('co-body');
-var messages = [
-  { id: 0, message: 'Koa next generation web framework for node.js' },
-  { id: 1, message: 'Koa is a new web framework designed by the team behind Express' }
+const views = require('co-views');
+const parse = require('co-body');
+const messages = [
+  { id: 0,
+    message: 'Koa next generation web framework for node.js'
+  },
+  { id: 1,
+    message: 'Koa is a new web framework designed by the team behind Express'
+  }
 ];
 
-var render = views(__dirname + '/../views', {
+const render = views(__dirname + '/../views', {
   map: { html: 'swig' }
 });
 
-module.exports.home = function *home() {
+module.exports.home = function *home(ctx) {
   this.body = yield render('list', { 'messages': messages });
 };
 
@@ -19,7 +23,7 @@ module.exports.list = function *list() {
 };
 
 module.exports.fetch = function *fetch(id) {
-  var message = messages[id];
+  const message = messages[id];
   if (!message) {
     this.throw(404, 'message with id = ' + id + ' was not found');
   }
@@ -27,21 +31,25 @@ module.exports.fetch = function *fetch(id) {
 };
 
 module.exports.create = function *create() {
-  var message = yield parse(this);
-  var id = messages.push(message) - 1;
+  const message = yield parse(this);
+  const id = messages.push(message) - 1;
   message.id = id;
   this.redirect('/');
 };
 
-function doSomeAsync() {
-  return function (callback) {
-    setTimeout(function () {
-      callback(null, 'this was loaded asynchronously and it took 3 seconds to complete');
-    }, 3000);
-  };
-}
+const asyncOperation = () => callback =>
+  setTimeout(
+    () => callback(null, 'this was loaded asynchronously and it took 2 seconds to complete'),
+    2000);
 
-// One way to deal with asynchronous call
+const returnsPromise = () =>
+  new Promise((resolve, reject) =>
+    setTimeout(() => resolve('promise resolved after 2 seconds'), 2000));
+
 module.exports.delay = function *delay() {
-  this.body = yield doSomeAsync();
+  this.body = yield asyncOperation();
+};
+
+module.exports.promise = function *promise() {
+  this.body = yield returnsPromise();
 };

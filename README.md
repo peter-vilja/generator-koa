@@ -31,7 +31,7 @@ $ npm install -g yo
 $ npm install -g generator-koa
 ```
 
-Make a new directory and ```cd``` into it:
+Make a new directory and `cd` into it:
 
 ```
 $ mkdir new-project && cd $_
@@ -45,7 +45,7 @@ $ yo koa
 
 ## Start
 
-Requires NodeJS >= v0.11.3
+Requires Node.js >= v5.0.0
 
 ```
 $ npm start

@@ -2,6 +2,7 @@
   "name": "generator-koa",
   "version": "0.1.6",
   "description": "A Koa generator for Yeoman",
+  "license": "MIT",
   "keywords": [
     "yeoman-generator",
     "koa"
@@ -22,21 +23,14 @@
     "test": "mocha"
   },
   "dependencies": {
-    "yeoman-generator": "~0.16.0"
+    "yeoman-generator": "^0.22.5"
   },
   "devDependencies": {
-    "mocha": "~1.17.0"
-  },
-  "peerDependencies": {
-    "yo": ">=1.0.0"
+    "mocha": "^2.4.5",
+    "yeoman-assert": "^2.1.1",
+    "yeoman-test": "^1.1.0"
   },
   "engines": {
-    "node": ">=0.8.0",
-    "npm": ">=1.2.10"
-  },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ]
+    "node": ">=5.0.0"
+  }
 }

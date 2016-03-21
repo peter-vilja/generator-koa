@@ -1,47 +1,27 @@
 'use strict';
-var util = require('util');
-var path = require('path');
-var yeoman = require('yeoman-generator');
+const util = require('util');
+const path = require('path');
+const yeoman = require('yeoman-generator');
 
+module.exports = yeoman.Base.extend({
+  writing: function () {
+    const copy = (t, d) => this.fs.copy(this.templatePath(t), this.destinationPath(d));
+    copy('routeSpec.js', 'test/routeSpec.js');
+    copy('layout.html', 'views/layout.html');
+    copy('list.html', 'views/list.html');
+    copy('main.css', 'public/styles/main.css');
+    copy('messages.js', 'controllers/messages.js');
+    copy('app.js', 'app.js');
+    copy('editorconfig', '.editorconfig');
+    copy('jshintrc', '.jshintrc');
+    this.fs.copyTpl(
+      this.templatePath('_package.json'),
+      this.destinationPath('package.json'),
+      {basename: path.basename(process.cwd())}
+    );
+  },
 
-var KoaGenerator = module.exports = function KoaGenerator(args, options) {
-  yeoman.generators.Base.apply(this, arguments);
-
-  this.on('end', function () {
-    this.installDependencies({ skipInstall: options['skip-install'] });
-  });
-
-  this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
-  this.basename = path.basename(process.cwd());
-};
-
-util.inherits(KoaGenerator, yeoman.generators.Base);
-
-KoaGenerator.prototype.askFor = function askFor() {
-  var cb = this.async();
-
-  // have Yeoman greet the user.
-  console.log(this.yeoman);
-  cb();
-};
-
-KoaGenerator.prototype.app = function app() {
-  this.mkdir('controllers');
-  this.mkdir('public/scripts');
-  this.mkdir('public/styles');
-  this.mkdir('views');
-  this.mkdir('test');
-
-  this.copy('routeSpec.js', 'test/routeSpec.js');
-  this.copy('layout.html', 'views/layout.html');
-  this.copy('list.html', 'views/list.html');
-  this.copy('main.css', 'public/styles/main.css');
-  this.copy('messages.js', 'controllers/messages.js');
-  this.copy('app.js', 'app.js');
-  this.copy('_package.json', 'package.json');
-};
-
-KoaGenerator.prototype.projectfiles = function projectfiles() {
-  this.copy('editorconfig', '.editorconfig');
-  this.copy('jshintrc', '.jshintrc');
-};
+  install: function () {
+    this.installDependencies();
+  }
+});

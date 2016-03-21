@@ -1,25 +1,18 @@
 /*global describe, beforeEach, it*/
 'use strict';
 var path    = require('path');
-var helpers = require('yeoman-generator').test;
+var assert  = require('yeoman-assert');
+var helpers = require('yeoman-test');
 
-describe('koa generator', function () {
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-      if (err) {
-        return done(err);
-      }
-
-      this.app = helpers.createGenerator('koa:app', [
-        '../../app'
-      ]);
-      done();
-    }.bind(this));
+describe('koa generator', () => {
+  before(done => {
+    helpers
+      .run(path.join(__dirname, '../app'))
+      .on('end', done);
   });
 
-  it('creates expected files', function (done) {
+  it('creates expected files', () => {
     var expected = [
-      // add files you expect to exist here.
       '.jshintrc',
       '.editorconfig',
       'package.json',
@@ -27,15 +20,9 @@ describe('koa generator', function () {
       'views/layout.html',
       'views/list.html',
       'public/styles/main.css',
-      'public/scripts',
       'controllers/messages.js',
       'test/routeSpec.js'
     ];
-
-    this.app.options['skip-install'] = true;
-    this.app.run({}, function () {
-      helpers.assertFiles(expected);
-      done();
-    });
+    assert.file(expected);
   });
 });
