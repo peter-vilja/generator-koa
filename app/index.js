@@ -10,6 +10,7 @@ module.exports = yeoman.Base.extend({
     copy('layout.html', 'views/layout.html');
     copy('list.html', 'views/list.html');
     copy('main.css', 'public/styles/main.css');
+    copy('gitkeep', 'public/scripts/.gitkeep');
     copy('messages.js', 'controllers/messages.js');
     copy('app.js', 'app.js');
     copy('editorconfig', '.editorconfig');

@@ -20,6 +20,7 @@ describe('koa generator', () => {
       'views/layout.html',
       'views/list.html',
       'public/styles/main.css',
+      'public/scripts',
       'controllers/messages.js',
       'test/routeSpec.js'
     ];
