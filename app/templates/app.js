@@ -6,25 +6,26 @@ const serve = require('koa-static');
 const route = require('koa-route');
 const koa = require('koa');
 const path = require('path');
-const app = module.exports = koa();
+const convert = require('koa-convert');
+const app = module.exports = new koa();
 
 // Logger
-app.use(logger());
+app.use(convert(logger()));
 
-app.use(route.get('/', messages.home));
-app.use(route.get('/messages', messages.list));
-app.use(route.get('/messages/:id', messages.fetch));
-app.use(route.post('/messages', messages.create));
-app.use(route.get('/async', messages.delay));
-app.use(route.get('/promise', messages.promise));
+app.use(convert(route.get('/', messages.home)));
+app.use(convert(route.get('/messages', messages.list)));
+app.use(convert(route.get('/messages/:id', messages.fetch)));
+app.use(convert(route.post('/messages', messages.create)));
+app.use(convert(route.get('/async', messages.delay)));
+app.use(convert(route.get('/promise', messages.promise)));
 
 // Serve static files
-app.use(serve(path.join(__dirname, 'public')));
+app.use(convert(serve(path.join(__dirname, 'public'))));
 
 // Compress
-app.use(compress());
+app.use(convert(compress()));
 
 if (!module.parent) {
-  app.listen(3000);
-  console.log('listening on port 3000');
+	app.listen(3000);
+	console.log('listening on port 3000');
 }
